@@ -47,7 +47,7 @@ public class Matricula {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "plano_id", nullable = false)
     private Plano plano;
-    
+
     // Método para verificar se a matrícula está vencida
     public boolean isVencida() {
         return LocalDate.now().isAfter(dataFim);

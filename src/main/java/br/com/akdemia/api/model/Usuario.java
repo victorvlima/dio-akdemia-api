@@ -35,7 +35,7 @@ public class Usuario {
     private String email;
     
     @NotBlank(message = "CPF é obrigatório")
-    @Pattern(regexp = "\d{11}", message = "CPF deve conter 11 dígitos")
+    @Pattern(regexp = "'\'d{11}", message = "CPF deve conter 11 dígitos")
     @Column(unique = true, nullable = false, length = 11)
     private String cpf;
     
