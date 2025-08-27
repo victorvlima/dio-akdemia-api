@@ -62,6 +62,6 @@ public class Usuario {
     @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Matricula> matriculas;
     
-    @OneToMany(mappedBy = "instrutor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Treino> treinosInstrutor;
+    //@OneToMany(mappedBy = "instrutor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    //private List<Treino> treinosInstrutor;
 }
