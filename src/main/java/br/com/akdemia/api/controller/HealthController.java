@@ -1,4 +1,4 @@
-package br.com.akdemia.api;
+package br.com.akdemia.api.controller;
 
 import java.time.OffsetDateTime;
 import java.util.Map;
