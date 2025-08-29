@@ -1,24 +1,27 @@
-package br.com.akdemia.api.model;
+package br.com.akdemia.api.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import lombok.AllArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "planos")
+@Table(name = "tb_planos")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
+@ToString(exclude = {"matriculas"})
 public class Plano {
     
     @Id
@@ -56,5 +59,5 @@ public class Plano {
     
     // Relacionamentos
     @OneToMany(mappedBy = "plano", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Matricula> matriculas;
+    private List<Matricula> matriculas = new ArrayList<>();
 }

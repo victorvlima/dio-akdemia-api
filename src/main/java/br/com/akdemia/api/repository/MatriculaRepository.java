@@ -1,8 +1,9 @@
 package br.com.akdemia.api.repository;
 
-import br.com.akdemia.api.model.Matricula;
-import br.com.akdemia.api.model.StatusMatricula;
-import br.com.akdemia.api.model.Usuario;
+import br.com.akdemia.api.entity.Matricula;
+import br.com.akdemia.api.entity.Usuario;
+import br.com.akdemia.api.enums.StatusMatricula;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,9 +18,9 @@ public interface MatriculaRepository extends JpaRepository<Matricula, Long> {
     
     List<Matricula> findByAlunoAndStatus(Usuario aluno, StatusMatricula status);
     
-    Optional<Matricula> findByAlunoAndStatusOrderByDataCriacaoDesc(Usuario aluno, StatusMatricula status);
+    Optional<Matricula> findByAlunoAndStatusOrderByDataMatriculaDesc(Usuario aluno, StatusMatricula status);
     
-    @Query("SELECT m FROM Matricula m WHERE m.dataFim < :data AND m.status = 'ATIVA'")
+   /* @Query("SELECT m FROM Matricula m WHERE m.dataFim < :data AND m.status = 'ATIVA'")
     List<Matricula> findMatriculasVencidas(@Param("data") LocalDate data);
     
     @Query("SELECT m FROM Matricula m WHERE m.dataFim BETWEEN :dataInicio AND :dataFim")
@@ -30,5 +31,5 @@ public interface MatriculaRepository extends JpaRepository<Matricula, Long> {
     Long countMatriculasAtivas();
     
     @Query("SELECT m FROM Matricula m WHERE m.aluno.id = :alunoId ORDER BY m.dataCriacao DESC")
-    List<Matricula> findByAlunoIdOrderByDataCriacaoDesc(@Param("alunoId") Long alunoId);
+    List<Matricula> findByAlunoIdOrderByDataCriacaoDesc(@Param("alunoId") Long alunoId);*/
 }

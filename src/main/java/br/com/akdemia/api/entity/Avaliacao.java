@@ -1,22 +1,36 @@
-package br.com.akdemia.api.model;
-
-import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Builder;
-import org.hibernate.annotations.CreationTimestamp;
+package br.com.akdemia.api.entity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.CreationTimestamp;
+
+import br.com.akdemia.api.enums.Objetivo;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
 @Entity
-@Table(name = "avaliacoes")
+@Table(name = "tb_avaliacoes")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-//@Builder
+@EqualsAndHashCode(of = "id")
 public class Avaliacao {
     
     @Id
@@ -24,13 +38,17 @@ public class Avaliacao {
     private Long id;
     
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "personal_id", nullable = false)
+    private Instrutor instrutor;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "aluno_id", nullable = false)
     private Aluno aluno;
     
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "personal_id", nullable = false)
-    private Personal personal;
-    
+    @Enumerated(EnumType.STRING)
+    @Column(length = 20)
+    private Objetivo objetivo;
+
     @DecimalMin(value = "0.0", message = "Peso deve ser positivo")
     @DecimalMax(value = "500.0", message = "Peso deve ser menor que 500kg")
     @Column(precision = 5, scale = 2)

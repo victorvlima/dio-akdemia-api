@@ -1,9 +1,10 @@
 package br.com.akdemia.api.repository;
 
-import br.com.akdemia.api.model.Plano;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
+import br.com.akdemia.api.entity.Plano;
 
 import java.math.BigDecimal;
 import java.util.List;

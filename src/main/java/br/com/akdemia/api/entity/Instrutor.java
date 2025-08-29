@@ -1,4 +1,4 @@
-package br.com.akdemia.api.model;
+package br.com.akdemia.api.entity;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -19,16 +19,16 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "personais")
+@Table(name = "tb_instrutores")
 @Data
-//@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-//@SuperBuilder
-public class Personal {
+@EqualsAndHashCode(of = "id")
+public class Instrutor {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,9 +51,9 @@ public class Personal {
     @Column(name = "anos_experiencia")
     private Integer anosExperiencia;
     
-    @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "instrutor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Treino> treinos = new ArrayList<>();
     
-    @OneToMany(mappedBy = "personal", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "instrutor", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Avaliacao> avaliacoes = new ArrayList<>();
 }

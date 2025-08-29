@@ -1,4 +1,4 @@
-package br.com.akdemia.api.model;
+package br.com.akdemia.api.entity;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -7,6 +7,9 @@ import java.util.List;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import br.com.akdemia.api.enums.NivelDificuldade;
+import br.com.akdemia.api.enums.StatusTreino;
+import br.com.akdemia.api.enums.TipoTreino;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,16 +28,16 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "treinos")
+@Table(name = "tb_treinos")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@EqualsAndHashCode(of = "id")
 public class Treino {
     
     @Id
@@ -68,16 +71,14 @@ public class Treino {
     private Aluno aluno;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "personal_id", nullable = false)
-    private Personal personal;
+    @JoinColumn(name = "instrutor_id", nullable = false)
+    private Instrutor instrutor;
     
     @OneToMany(mappedBy = "treino", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @Builder.Default
     private List<ExercicioTreino> exercicios = new ArrayList<>();
     
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
-    @Builder.Default
     private StatusTreino status = StatusTreino.ATIVO;
     
     @CreationTimestamp

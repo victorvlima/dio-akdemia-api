@@ -1,11 +1,11 @@
 package br.com.akdemia.api.service;
 
 import br.com.akdemia.api.dto.UsuarioDTO;
+import br.com.akdemia.api.entity.Usuario;
+import br.com.akdemia.api.enums.TipoUsuario;
 import br.com.akdemia.api.exception.BusinessException;
 import br.com.akdemia.api.exception.ResourceNotFoundException;
 import br.com.akdemia.api.mapper.UsuarioMapper;
-import br.com.akdemia.api.model.TipoUsuario;
-import br.com.akdemia.api.model.Usuario;
 import br.com.akdemia.api.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

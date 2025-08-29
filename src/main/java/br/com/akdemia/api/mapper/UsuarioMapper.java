@@ -1,7 +1,8 @@
 package br.com.akdemia.api.mapper;
 
 import br.com.akdemia.api.dto.UsuarioDTO;
-import br.com.akdemia.api.model.Usuario;
+import br.com.akdemia.api.entity.Usuario;
+
 import org.springframework.stereotype.Component;
 
 import java.util.List;

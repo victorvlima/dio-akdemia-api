@@ -1,4 +1,4 @@
-package br.com.akdemia.api.model;
+package br.com.akdemia.api.enums;
 
 public enum StatusMatricula {
     ATIVA("Ativa"),

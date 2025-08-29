@@ -1,7 +1,7 @@
 package br.com.akdemia.api.controller;
 
 import br.com.akdemia.api.dto.UsuarioDTO;
-import br.com.akdemia.api.model.TipoUsuario;
+import br.com.akdemia.api.enums.TipoUsuario;
 import br.com.akdemia.api.service.UsuarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

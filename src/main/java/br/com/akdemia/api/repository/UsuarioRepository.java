@@ -1,7 +1,8 @@
 package br.com.akdemia.api.repository;
 
-import br.com.akdemia.api.model.Usuario;
-import br.com.akdemia.api.model.TipoUsuario;
+import br.com.akdemia.api.entity.Usuario;
+import br.com.akdemia.api.enums.TipoUsuario;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

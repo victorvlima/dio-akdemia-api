@@ -1,11 +1,12 @@
 package br.com.akdemia.api.dto;
 
-import br.com.akdemia.api.model.StatusMatricula;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
+import br.com.akdemia.api.enums.StatusMatricula;
 
 @Data
 public class MatriculaDTO {

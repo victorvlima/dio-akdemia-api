@@ -1,10 +1,11 @@
 package br.com.akdemia.api.dto;
 
-import br.com.akdemia.api.model.TipoUsuario;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+
+import br.com.akdemia.api.enums.TipoUsuario;
 
 @Data
 public class UsuarioDTO {

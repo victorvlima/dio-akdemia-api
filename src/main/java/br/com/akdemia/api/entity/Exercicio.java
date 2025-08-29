@@ -1,24 +1,28 @@
-package br.com.akdemia.api.model;
+package br.com.akdemia.api.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.Builder;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import br.com.akdemia.api.enums.GrupoMuscular;
+import br.com.akdemia.api.enums.TipoExercicio;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "exercicios")
+@Table(name = "tb_exercicios")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-//@Builder
+@EqualsAndHashCode(of = "id")
 public class Exercicio {
     
     @Id
