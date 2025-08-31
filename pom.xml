@@ -68,9 +68,17 @@
         </dependency>
     
         <!-- Test -->
+        <!-- Dependências para testes -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    
+        <!-- Para testes web -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
             <scope>test</scope>
         </dependency>
 

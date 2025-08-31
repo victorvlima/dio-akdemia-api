@@ -1,5 +1,20 @@
 package br.com.akdemia.api.controller;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 import br.com.akdemia.api.dto.AlunoDTO;
 import br.com.akdemia.api.enums.TipoUsuario;
 import br.com.akdemia.api.service.AlunoService;
@@ -7,16 +22,9 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.List;
 
 @RestController
-@RequestMapping("/api/alunos")
+@RequestMapping("/alunos")
 @Tag(name = "Aluno", description = "Operações relacionadas aos alunos da academia")
 public class AlunoController {
     
@@ -30,19 +38,19 @@ public class AlunoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(usuarioCriado);
     }
     
+    @GetMapping("/todos")
+    @Operation(summary = "Listar todos os alunos", description = "Retorna lista de todos os alunos ativos")
+    public ResponseEntity<List<AlunoDTO>> listarTodos() {
+        List<AlunoDTO> alunos = alunoService.listarTodos();
+        return ResponseEntity.ok(alunos);
+    }
+    
     @GetMapping("/{id}")
     @Operation(summary = "Buscar aluno por ID", description = "Retorna um aluno específico pelo ID")
     public ResponseEntity<AlunoDTO> buscarPorId(
             @Parameter(description = "ID do aluno") @PathVariable Long id) {
         AlunoDTO aluno = alunoService.buscarPorId(id);
         return ResponseEntity.ok(aluno);
-    }
-    
-    @GetMapping
-    @Operation(summary = "Listar todos os alunos", description = "Retorna lista de todos os alunos ativos")
-    public ResponseEntity<List<AlunoDTO>> listarTodos() {
-        List<AlunoDTO> alunos = alunoService.listarTodos();
-        return ResponseEntity.ok(alunos);
     }
     
     @GetMapping("/tipo/{tipo}")

@@ -38,10 +38,10 @@ server:
 logging:
   level:
     br.com.akdemia.api: DEBUG
-    org.springframework.boot.autoconfigure: DEBUG
-    org.springframework.jdbc: DEBUG
-    org.springframework.orm.jpa: DEBUG
-    org.springframework.transaction: DEBUG
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
-    org.hibernate.engine.transaction.internal.TransactionImpl: DEBUG
+    #org.springframework.boot.autoconfigure: DEBUG
+    #org.springframework.jdbc: DEBUG
+    #org.springframework.orm.jpa: DEBUG
+    #org.springframework.transaction: DEBUG
+    #org.hibernate.SQL: DEBUG
+    #org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    #org.hibernate.engine.transaction.internal.TransactionImpl: DEBUG
