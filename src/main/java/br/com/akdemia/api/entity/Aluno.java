@@ -41,50 +41,54 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@ToString(exclude = {"matriculas", "treinos", "avaliacoes"})
+@ToString(exclude = { "matriculas", "treinos", "avaliacoes" })
 public class Aluno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @Email(message = "Email deve ser válido")
     @NotBlank(message = "Email é obrigatório")
     @Column(unique = true, nullable = false)
     private String email;
-    
+
     @NotBlank(message = "CPF é obrigatório")
-    @Pattern(regexp = "'\'d{11}", message = "CPF deve conter 11 dígitos")
+    @Pattern(regexp = "\\d{11}", message = "CPF deve conter 11 dígitos")
     @Column(unique = true, nullable = false, length = 11)
     private String cpf;
-    
+
     @NotBlank(message = "Nome é obrigatório")
     @Size(min = 2, max = 100, message = "Nome deve ter entre 2 e 100 caracteres")
     @Column(nullable = false, length = 100)
     private String nome;
-    
+
     @NotBlank(message = "Telefone é obrigatório")
     @Column(nullable = false, length = 15)
     private String telefone;
-    
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TipoUsuario tipo;
-    
+
     @NotNull(message = "Matrícula é obrigatória")
     @Column(nullable = false, unique = true, length = 20)
     private String numeroMatricula;
-    
+
     @Column(nullable = false)
     private Boolean ativo = true;
 
     @CreationTimestamp
-    @Column(name = "data_criacao", nullable = false, updatable = false)
-    private LocalDateTime dataCriacao;
-    
+    @Column(name = "data_cadastro", nullable = false, updatable = false)
+    private LocalDateTime dataCadastro;
+
     @UpdateTimestamp
     @Column(name = "data_atualizacao")
     private LocalDateTime dataAtualizacao;
+
+    @UpdateTimestamp
+    @Column(name = "data_desativacao")
+    private LocalDateTime dataDesativacao;
 
     @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Matricula> matriculas = new ArrayList<>();

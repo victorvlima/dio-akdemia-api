@@ -31,7 +31,7 @@ public class AlunoController {
     @Autowired
     private AlunoService alunoService;
     
-    @PostMapping
+    @PostMapping("/novo")
     @Operation(summary = "Criar novo aluno", description = "Cria um novo aluno no sistema")
     public ResponseEntity<AlunoDTO> criar(@Valid @RequestBody AlunoDTO alunoDTO) {
         AlunoDTO usuarioCriado = alunoService.criar(alunoDTO);
@@ -65,7 +65,7 @@ public class AlunoController {
     @Operation(summary = "Atualizar aluno", description = "Atualiza os dados de um aluno existente")
     public ResponseEntity<AlunoDTO> atualizar(
             @Parameter(description = "ID do aluno") @PathVariable Long id,
-            @Valid @RequestBody AlunoDTO alunoDTO) {
+            /*@Valid*/ @RequestBody AlunoDTO alunoDTO) {
         AlunoDTO usuarioAtualizado = alunoService.atualizar(id, alunoDTO);
         return ResponseEntity.ok(usuarioAtualizado);
     }
