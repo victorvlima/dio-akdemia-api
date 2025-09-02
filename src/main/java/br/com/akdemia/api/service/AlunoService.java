@@ -21,30 +21,27 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Service para operações de negócio relacionadas à entidade Aluno.
  * 
- * <p>Responsável por:</p>
- * <ul>
- *   <li>Operações CRUD completas (criar, buscar, atualizar, desativar)</li>
- *   <li>Validações de regras de negócio</li>
- *   <li>Geração automática de números de matrícula</li>
- *   <li>Soft delete (desativação/reativação)</li>
- *   <li>Buscas avançadas e filtros</li>
- *   <li>Controle de transações</li>
- * </ul>
+ * Responsável por:
  * 
- * <h3>Regras de Negócio:</h3>
- * <ul>
- *   <li>Email deve ser único entre alunos ativos</li>
- *   <li>CPF deve ser único entre alunos ativos</li>
- *   <li>Número de matrícula é gerado automaticamente</li>
- *   <li>Exclusão é sempre soft delete (desativação)</li>
- *   <li>Apenas alunos ativos aparecem em listagens padrão</li>
- * </ul>
+ * - Operações CRUD completas (criar, buscar, atualizar, desativar)
+ * - Validações de regras de negócio
+ * - Geração automática de números de matrícula
+ * - Soft delete (desativação/reativação)
+ * - Buscas avançadas e filtros
+ * - Controle de transações
  * 
- * <h3>Transações:</h3>
- * <ul>
- *   <li><strong>Leitura:</strong> @Transactional(readOnly = true) para otimização</li>
- *   <li><strong>Escrita:</strong> @Transactional para garantir consistência</li>
- * </ul>
+ * ## Regras de Negócio
+ * 
+ * - Email deve ser único entre alunos ativos
+ * - CPF deve ser único entre alunos ativos
+ * - Número de matrícula é gerado automaticamente
+ * - Exclusão é sempre soft delete (desativação)
+ * - Apenas alunos ativos aparecem em listagens padrão
+ * 
+ * ## Transações
+ * 
+ * - **Leitura:** @Transactional(readOnly = true) para otimização
+ * - **Escrita:** @Transactional para garantir consistência
  * 
  * @author Sistema Akdemia
  * @version 1.0
@@ -64,19 +61,17 @@ public class AlunoService {
     /**
      * Cria um novo aluno no sistema.
      * 
-     * <p><strong>Validações aplicadas:</strong></p>
-     * <ul>
-     *   <li>Email único entre alunos ativos</li>
-     *   <li>CPF único entre alunos ativos</li>
-     *   <li>Dados obrigatórios preenchidos</li>
-     * </ul>
+     * **Validações aplicadas:**
      * 
-     * <p><strong>Comportamento:</strong></p>
-     * <ul>
-     *   <li>Gera número de matrícula automaticamente</li>
-     *   <li>Define status como ativo</li>
-     *   <li>Registra data de cadastro automaticamente</li>
-     * </ul>
+     * - Email único entre alunos ativos
+     * - CPF único entre alunos ativos
+     * - Dados obrigatórios preenchidos
+     * 
+     * **Comportamento:**
+     * 
+     * - Gera número de matrícula automaticamente
+     * - Define status como ativo
+     * - Registra data de cadastro automaticamente
      * 
      * @param alunoDTO Dados do aluno a ser criado
      * @return DTO do aluno criado com ID e dados de auditoria
@@ -107,7 +102,7 @@ public class AlunoService {
     /**
      * Busca aluno por ID (incluindo inativos).
      * 
-     * <p><strong>Comportamento:</strong> Retorna aluno independente do status ativo/inativo</p>
+     * **Comportamento:** Retorna aluno independente do status ativo/inativo
      * 
      * @param id ID do aluno
      * @return DTO do aluno encontrado
@@ -126,8 +121,8 @@ public class AlunoService {
     /**
      * Busca aluno ativo por ID.
      * 
-     * <p><strong>Comportamento:</strong> Retorna apenas se o aluno estiver ativo</p>
-     * <p><strong>Uso:</strong> Operações que devem considerar apenas alunos ativos</p>
+     * **Comportamento:** Retorna apenas se o aluno estiver ativo  
+     * **Uso:** Operações que devem considerar apenas alunos ativos
      * 
      * @param id ID do aluno
      * @return DTO do aluno ativo encontrado
@@ -199,8 +194,8 @@ public class AlunoService {
     /**
      * Lista todos os alunos ativos.
      * 
-     * <p><strong>Performance:</strong> Para grandes volumes, prefira listarTodosComPaginacao()</p>
-     * <p><strong>Uso:</strong> Relatórios, exportações, operações que precisam de todos os registros</p>
+     * **Performance:** Para grandes volumes, prefira listarTodosComPaginacao()  
+     * **Uso:** Relatórios, exportações, operações que precisam de todos os registros
      * 
      * @return Lista de DTOs de alunos ativos
      */
@@ -215,8 +210,8 @@ public class AlunoService {
     /**
      * Lista todos os alunos ativos com paginação.
      * 
-     * <p><strong>Uso recomendado:</strong> Interfaces de usuário, APIs REST</p>
-     * <p><strong>Performance:</strong> Otimizada para grandes volumes</p>
+     * **Uso recomendado:** Interfaces de usuário, APIs REST  
+     * **Performance:** Otimizada para grandes volumes
      * 
      * @param pageable Configuração de paginação
      * @return Página de DTOs de alunos ativos
@@ -247,7 +242,7 @@ public class AlunoService {
     /**
      * Lista todos os alunos inativos.
      * 
-     * <p><strong>Uso:</strong> Relatórios de alunos desativados, auditoria</p>
+     * **Uso:** Relatórios de alunos desativados, auditoria
      * 
      * @return Lista de DTOs de alunos inativos
      */
@@ -264,7 +259,7 @@ public class AlunoService {
     /**
      * Busca alunos ativos por nome (busca parcial, case insensitive).
      * 
-     * <p><strong>Comportamento:</strong> Busca por substring no nome</p>
+     * **Comportamento:** Busca por substring no nome
      * 
      * @param nome Nome ou parte do nome para busca
      * @return Lista de DTOs de alunos que contêm o nome especificado
@@ -280,7 +275,7 @@ public class AlunoService {
     /**
      * Busca alunos ativos com filtros múltiplos e paginação.
      * 
-     * <p><strong>Flexibilidade:</strong> Parâmetros null são ignorados</p>
+     * **Flexibilidade:** Parâmetros null são ignorados
      * 
      * @param nome Nome para filtro (opcional)
      * @param tipo Tipo de usuário para filtro (opcional)
@@ -298,7 +293,7 @@ public class AlunoService {
     /**
      * Busca alunos ativos sem matrículas em cursos.
      * 
-     * <p><strong>Uso:</strong> Identificar alunos pendentes de matrícula</p>
+     * **Uso:** Identificar alunos pendentes de matrícula
      * 
      * @return Lista de DTOs de alunos sem matrículas
      */
@@ -315,19 +310,17 @@ public class AlunoService {
     /**
      * Atualiza dados de um aluno existente.
      * 
-     * <p><strong>Validações aplicadas:</strong></p>
-     * <ul>
-     *   <li>Aluno deve existir e estar ativo</li>
-     *   <li>Email único (se alterado)</li>
-     *   <li>CPF único (se alterado)</li>
-     * </ul>
+     * **Validações aplicadas:**
      * 
-     * <p><strong>Comportamento:</strong></p>
-     * <ul>
-     *   <li>Atualização parcial (apenas campos não-null)</li>
-     *   <li>Atualiza dataAtualizacao automaticamente</li>
-     *   <li>Preserva dados não informados</li>
-     * </ul>
+     * - Aluno deve existir e estar ativo
+     * - Email único (se alterado)
+     * - CPF único (se alterado)
+     * 
+     * **Comportamento:**
+     * 
+     * - Atualização parcial (apenas campos não-null)
+     * - Atualiza dataAtualizacao automaticamente
+     * - Preserva dados não informados
      * 
      * @param id ID do aluno a ser atualizado
      * @param alunoDTO Dados para atualização
@@ -358,13 +351,12 @@ public class AlunoService {
     /**
      * Desativa um aluno (soft delete).
      * 
-     * <p><strong>Comportamento:</strong></p>
-     * <ul>
-     *   <li>Marca aluno como inativo</li>
-     *   <li>Registra data de desativação</li>
-     *   <li>Preserva todos os dados históricos</li>
-     *   <li>Aluno não aparece mais em listagens padrão</li>
-     * </ul>
+     * **Comportamento:**
+     * 
+     * - Marca aluno como inativo
+     * - Registra data de desativação
+     * - Preserva todos os dados históricos
+     * - Aluno não aparece mais em listagens padrão
      * 
      * @param id ID do aluno a ser desativado
      * @throws ResourceNotFoundException se aluno não for encontrado
@@ -390,13 +382,12 @@ public class AlunoService {
     /**
      * Reativa um aluno previamente desativado.
      * 
-     * <p><strong>Comportamento:</strong></p>
-     * <ul>
-     *   <li>Marca aluno como ativo</li>
-     *   <li>Remove data de desativação</li>
-     *   <li>Atualiza data de modificação</li>
-     *   <li>Aluno volta a aparecer em listagens</li>
-     * </ul>
+     * **Comportamento:**
+     * 
+     * - Marca aluno como ativo
+     * - Remove data de desativação
+     * - Atualiza data de modificação
+     * - Aluno volta a aparecer em listagens
      * 
      * @param id ID do aluno a ser reativado
      * @throws ResourceNotFoundException se aluno não for encontrado

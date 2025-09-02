@@ -1,40 +1,40 @@
 package br.com.akdemia.api.mapper;
 
-import br.com.akdemia.api.dto.AlunoDTO;
-import br.com.akdemia.api.entity.Aluno;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import br.com.akdemia.api.dto.AlunoDTO;
+import br.com.akdemia.api.entity.Aluno;
 
 /**
  * Mapper responsável pela conversão entre entidade Aluno e AlunoDTO.
  * 
- * <h3>Uso Recomendado:</h3>
- * <ul>
- *   <li><strong>toDTO()</strong> - Para busca individual com relacionamentos completos</li>
- *   <li><strong>toDTOSimple()</strong> - Para listagens e buscas simples (melhor performance)</li>
- *   <li><strong>toEntityForCreation()</strong> - Para criar novos alunos (ignora ID e auditoria)</li>
- *   <li><strong>updateEntityFromDTO()</strong> - Para atualizar alunos existentes (atualização parcial)</li>
- *   <li><strong>toDTOList()</strong> - Para conversão de listas com relacionamentos</li>
- *   <li><strong>toDTOSimpleList()</strong> - Para conversão de listas sem relacionamentos (performance)</li>
- * </ul>
+ * ## Uso Recomendado
  * 
- * <h3>Exemplos de Uso:</h3>
- * <pre>
+ * - **`toDTO()`** - Para busca individual com relacionamentos completos
+ * - **`toDTOSimple()`** - Para listagens e buscas simples (melhor performance)
+ * - **`toEntityForCreation()`** - Para criar novos alunos (ignora ID e auditoria)
+ * - **`updateEntityFromDTO()`** - Para atualizar alunos existentes (atualização parcial)
+ * - **`toDTOList()`** - Para conversão de listas com relacionamentos
+ * - **`toDTOSimpleList()`** - Para conversão de listas sem relacionamentos (performance)
+ * 
+ * ## Exemplos de Uso
+ * 
+ * ```java
  * // Busca individual (com relacionamentos)
  * AlunoDTO dto = alunoMapper.toDTO(aluno);
  * 
  * // Listagem simples (sem relacionamentos - melhor performance)
- * List&lt;AlunoDTO&gt; dtos = alunoMapper.toDTOSimpleList(alunos);
+ * List<AlunoDTO> dtos = alunoMapper.toDTOSimpleList(alunos);
  * 
  * // Criação de novo aluno
  * Aluno novoAluno = alunoMapper.toEntityForCreation(alunoDTO);
  * 
  * // Atualização de aluno existente
  * alunoMapper.updateEntityFromDTO(alunoDTO, alunoExistente);
- * </pre>
+ * ```
  * 
  * @author Sistema Akdemia
  * @version 1.0
@@ -47,8 +47,8 @@ public class AlunoMapper {
      * Converte entidade Aluno para AlunoDTO completo.
      * Inclui todos os campos e relacionamentos como IDs.
      * 
-     * <p><strong>Uso:</strong> Busca individual, detalhes do aluno</p>
-     * <p><strong>Performance:</strong> Pode ser mais lenta devido aos relacionamentos</p>
+     * **Uso:** Busca individual, detalhes do aluno  
+     * **Performance:** Pode ser mais lenta devido aos relacionamentos
      * 
      * @param aluno Entidade a ser convertida
      * @return DTO correspondente com relacionamentos, ou null se aluno for null
@@ -97,8 +97,8 @@ public class AlunoMapper {
      * Converte entidade Aluno para AlunoDTO simplificado.
      * Não inclui relacionamentos para melhor performance.
      * 
-     * <p><strong>Uso:</strong> Listagens, buscas simples, APIs que não precisam de relacionamentos</p>
-     * <p><strong>Performance:</strong> Mais rápida, recomendada para listagens</p>
+     * **Uso:** Listagens, buscas simples, APIs que não precisam de relacionamentos  
+     * **Performance:** Mais rápida, recomendada para listagens
      * 
      * @param aluno Entidade a ser convertida
      * @return DTO simplificado sem relacionamentos, ou null se aluno for null
@@ -130,8 +130,8 @@ public class AlunoMapper {
      * Converte AlunoDTO para entidade Aluno para criação.
      * Ignora ID e campos de auditoria que são gerenciados automaticamente.
      * 
-     * <p><strong>Uso:</strong> Criação de novos alunos</p>
-     * <p><strong>Importante:</strong> Define ativo=true automaticamente</p>
+     * **Uso:** Criação de novos alunos  
+     * **Importante:** Define ativo=true automaticamente
      * 
      * @param dto DTO com dados para criação
      * @return Nova entidade para persistência, ou null se dto for null
@@ -159,8 +159,8 @@ public class AlunoMapper {
      * Converte AlunoDTO para entidade Aluno (conversão completa).
      * Inclui ID e todos os campos do DTO.
      * 
-     * <p><strong>Uso:</strong> Casos específicos onde é necessária conversão completa</p>
-     * <p><strong>Cuidado:</strong> Para criação, prefira toEntityForCreation()</p>
+     * **Uso:** Casos específicos onde é necessária conversão completa  
+     * **Cuidado:** Para criação, prefira toEntityForCreation()
      * 
      * @param dto DTO a ser convertido
      * @return Entidade correspondente, ou null se dto for null
@@ -190,9 +190,9 @@ public class AlunoMapper {
      * Atualiza entidade existente com dados do DTO (atualização parcial).
      * Apenas campos não-nulos do DTO são aplicados à entidade.
      * 
-     * <p><strong>Uso:</strong> Operações de update/PUT</p>
-     * <p><strong>Comportamento:</strong> Atualização parcial - apenas campos preenchidos</p>
-     * <p><strong>Importante:</strong> Campos de auditoria são gerenciados automaticamente</p>
+     * **Uso:** Operações de update/PUT  
+     * **Comportamento:** Atualização parcial - apenas campos preenchidos  
+     * **Importante:** Campos de auditoria são gerenciados automaticamente
      * 
      * @param dto DTO com novos dados (campos null são ignorados)
      * @param aluno Entidade existente a ser atualizada
@@ -234,8 +234,8 @@ public class AlunoMapper {
      * Converte lista de entidades para lista de DTOs completos.
      * Inclui relacionamentos - pode impactar performance em listas grandes.
      * 
-     * <p><strong>Uso:</strong> Quando relacionamentos são necessários</p>
-     * <p><strong>Performance:</strong> Para listas grandes, prefira toDTOSimpleList()</p>
+     * **Uso:** Quando relacionamentos são necessários  
+     * **Performance:** Para listas grandes, prefira toDTOSimpleList()
      * 
      * @param alunos Lista de entidades
      * @return Lista de DTOs com relacionamentos, ou null se alunos for null
@@ -254,8 +254,8 @@ public class AlunoMapper {
      * Converte lista de entidades para lista de DTOs simplificados.
      * Não inclui relacionamentos para melhor performance.
      * 
-     * <p><strong>Uso:</strong> Listagens, paginação, APIs de consulta</p>
-     * <p><strong>Performance:</strong> Recomendada para listas grandes</p>
+     * **Uso:** Listagens, paginação, APIs de consulta  
+     * **Performance:** Recomendada para listas grandes
      * 
      * @param alunos Lista de entidades
      * @return Lista de DTOs simplificados, ou null se alunos for null

@@ -17,11 +17,11 @@ import lombok.NoArgsConstructor;
 /**
  * DTO para transferência de dados de Aluno.
  * 
- * <p>Utilizado para comunicação entre as camadas da aplicação,
- * evitando exposição direta da entidade.</p>
+ * Utilizado para comunicação entre as camadas da aplicação,
+ * evitando exposição direta da entidade.
  * 
- * <p><strong>Validações:</strong> Aplicadas apenas nos campos obrigatórios para criação.
- * Para atualização, as validações são opcionais (campos podem ser null).</p>
+ * **Validações:** Aplicadas apenas nos campos obrigatórios para criação.
+ * Para atualização, as validações são opcionais (campos podem ser null).
  * 
  * @author Sistema Akdemia
  * @version 1.0

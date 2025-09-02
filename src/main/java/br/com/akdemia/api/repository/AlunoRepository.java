@@ -1,7 +1,8 @@
 package br.com.akdemia.api.repository;
 
-import br.com.akdemia.api.entity.Aluno;
-import br.com.akdemia.api.enums.TipoUsuario;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,42 +13,39 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
+import br.com.akdemia.api.entity.Aluno;
+import br.com.akdemia.api.enums.TipoUsuario;
 
 /**
  * Repository para operações de persistência da entidade Aluno.
  * 
- * <p>Fornece métodos para CRUD completo, incluindo:</p>
- * <ul>
- *   <li>Operações básicas (busca, criação, atualização)</li>
- *   <li>Soft delete (desativação/reativação)</li>
- *   <li>Validações de unicidade</li>
- *   <li>Buscas avançadas e filtros</li>
- *   <li>Relatórios e estatísticas</li>
- *   <li>Auditoria e controle de datas</li>
- * </ul>
+ * Fornece métodos para CRUD completo, incluindo:
  * 
- * <h3>Padrões de Nomenclatura:</h3>
- * <ul>
- *   <li><strong>findBy*</strong> - Buscas que retornam entidades</li>
- *   <li><strong>existsBy*</strong> - Verificações de existência (boolean)</li>
- *   <li><strong>countBy*</strong> - Contadores (Long)</li>
- *   <li><strong>*AndAtivoTrue</strong> - Considera apenas registros ativos</li>
- * </ul>
+ * - Operações básicas (busca, criação, atualização)
+ * - Soft delete (desativação/reativação)
+ * - Validações de unicidade
+ * - Buscas avançadas e filtros
+ * - Relatórios e estatísticas
+ * - Auditoria e controle de datas
  * 
- * <h3>Soft Delete:</h3>
- * <p>A entidade Aluno utiliza soft delete através do campo 'ativo'. 
- * Registros não são removidos fisicamente, apenas marcados como inativos.</p>
+ * ## Padrões de Nomenclatura
  * 
- * <h3>Uso Recomendado:</h3>
- * <ul>
- *   <li><strong>Criação:</strong> Use existsByEmailAndAtivoTrue() para validar unicidade</li>
- *   <li><strong>Atualização:</strong> Use existsByEmailAndAtivoTrueAndIdNot() para validar</li>
- *   <li><strong>Listagens:</strong> Use findByAtivoTrue() com paginação</li>
- *   <li><strong>Exclusão:</strong> Use desativarAluno() ao invés de delete()</li>
- * </ul>
+ * - **`findBy*`** - Buscas que retornam entidades
+ * - **`existsBy*`** - Verificações de existência (boolean)
+ * - **`countBy*`** - Contadores (Long)
+ * - **`*AndAtivoTrue`** - Considera apenas registros ativos
+ * 
+ * ## Soft Delete
+ * 
+ * A entidade Aluno utiliza soft delete através do campo 'ativo'. 
+ * Registros não são removidos fisicamente, apenas marcados como inativos.
+ * 
+ * ## Uso Recomendado
+ * 
+ * - **Criação:** Use existsByEmailAndAtivoTrue() para validar unicidade
+ * - **Atualização:** Use existsByEmailAndAtivoTrueAndIdNot() para validar
+ * - **Listagens:** Use findByAtivoTrue() com paginação
+ * - **Exclusão:** Use desativarAluno() ao invés de delete()
  * 
  * @author Sistema Akdemia
  * @version 1.0
@@ -121,7 +119,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
      * Verifica se existe aluno ATIVO com o email informado.
      * Utilizado para validações de unicidade considerando apenas registros ativos.
      * 
-     * <p><strong>Uso:</strong> Validação na criação de novos alunos</p>
+     * **Uso:** Validação na criação de novos alunos
      * 
      * @param email Email para verificação
      * @return true se existe aluno ativo com este email
@@ -132,7 +130,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
      * Verifica se existe aluno ATIVO com o CPF informado.
      * Utilizado para validações de unicidade considerando apenas registros ativos.
      * 
-     * <p><strong>Uso:</strong> Validação na criação de novos alunos</p>
+     * **Uso:** Validação na criação de novos alunos
      * 
      * @param cpf CPF para verificação
      * @return true se existe aluno ativo com este CPF
@@ -143,7 +141,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
      * Verifica se existe aluno ATIVO com o número de matrícula informado.
      * Utilizado para validações de unicidade considerando apenas registros ativos.
      * 
-     * <p><strong>Uso:</strong> Validação na criação de novos alunos</p>
+     * **Uso:** Validação na criação de novos alunos
      * 
      * @param numeroMatricula Número de matrícula para verificação
      * @return true se existe aluno ativo com este número de matrícula
@@ -154,7 +152,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
      * Verifica se existe outro aluno ativo com o mesmo email (excluindo o aluno atual).
      * Utilizado em operações de atualização para validar unicidade.
      * 
-     * <p><strong>Uso:</strong> Validação na atualização de alunos existentes</p>
+     * **Uso:** Validação na atualização de alunos existentes
      * 
      * @param email Email para verificação
      * @param id ID do aluno atual (para excluir da busca)
@@ -166,7 +164,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
      * Verifica se existe outro aluno ativo com o mesmo CPF (excluindo o aluno atual).
      * Utilizado em operações de atualização para validar unicidade.
      * 
-     * <p><strong>Uso:</strong> Validação na atualização de alunos existentes</p>
+     * **Uso:** Validação na atualização de alunos existentes
      * 
      * @param cpf CPF para verificação
      * @param id ID do aluno atual (para excluir da busca)
@@ -179,7 +177,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
     /**
      * Busca todos os alunos ativos.
      * 
-     * <p><strong>Performance:</strong> Para listas grandes, prefira a versão com paginação</p>
+     * **Performance:** Para listas grandes, prefira a versão com paginação
      * 
      * @return Lista de alunos ativos
      */
@@ -188,7 +186,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
     /**
      * Busca todos os alunos ativos com paginação.
      * 
-     * <p><strong>Uso recomendado:</strong> Para listagens em interfaces de usuário</p>
+     * **Uso recomendado:** Para listagens em interfaces de usuário
      * 
      * @param pageable Configuração de paginação
      * @return Página de alunos ativos
@@ -206,7 +204,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
     /**
      * Busca todos os alunos inativos.
      * 
-     * <p><strong>Uso:</strong> Relatórios de alunos desativados</p>
+     * **Uso:** Relatórios de alunos desativados
      * 
      * @return Lista de alunos desativados
      */
@@ -225,7 +223,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
     /**
      * Busca alunos ativos por nome (busca parcial, case insensitive).
      * 
-     * <p><strong>Comportamento:</strong> Busca por substring no nome, ignorando maiúsculas/minúsculas</p>
+     * **Comportamento:** Busca por substring no nome, ignorando maiúsculas/minúsculas
      * 
      * @param nome Nome ou parte do nome para busca
      * @return Lista de alunos ativos que contêm o nome especificado
@@ -238,8 +236,8 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
      * Busca alunos ativos com filtros múltiplos e paginação.
      * Permite filtrar por nome e/ou tipo simultaneamente.
      * 
-     * <p><strong>Flexibilidade:</strong> Parâmetros null são ignorados no filtro</p>
-     * <p><strong>Performance:</strong> Otimizada para grandes volumes de dados</p>
+     * **Flexibilidade:** Parâmetros null são ignorados no filtro  
+     * **Performance:** Otimizada para grandes volumes de dados
      * 
      * @param nome Nome para filtro (opcional - pode ser null)
      * @param tipo Tipo de usuário para filtro (opcional - pode ser null)
@@ -258,7 +256,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
      * Busca alunos ativos sem matrículas.
      * Útil para identificar alunos cadastrados mas não matriculados em cursos.
      * 
-     * <p><strong>Uso:</strong> Relatórios de alunos pendentes de matrícula</p>
+     * **Uso:** Relatórios de alunos pendentes de matrícula
      * 
      * @return Lista de alunos ativos sem matrículas
      */
@@ -270,7 +268,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
     /**
      * Busca alunos cadastrados em um período específico.
      * 
-     * <p><strong>Uso:</strong> Relatórios de crescimento, análises temporais</p>
+     * **Uso:** Relatórios de crescimento, análises temporais
      * 
      * @param dataInicio Data inicial do período (inclusive)
      * @param dataFim Data final do período (inclusive)
@@ -283,7 +281,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
     /**
      * Busca alunos desativados em um período específico.
      * 
-     * <p><strong>Uso:</strong> Análise de churn, relatórios de cancelamentos</p>
+     * **Uso:** Análise de churn, relatórios de cancelamentos
      * 
      * @param dataInicio Data inicial do período (inclusive)
      * @param dataFim Data final do período (inclusive)
@@ -297,7 +295,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
     /**
      * Busca alunos por status e período de cadastro com paginação.
      * 
-     * <p><strong>Flexibilidade:</strong> Permite filtrar ativos ou inativos por período</p>
+     * **Flexibilidade:** Permite filtrar ativos ou inativos por período
      * 
      * @param ativo Status do aluno (true para ativo, false para inativo)
      * @param dataInicio Data inicial do período (inclusive)
@@ -317,7 +315,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
     /**
      * Conta total de alunos ativos.
      * 
-     * <p><strong>Performance:</strong> Mais eficiente que count() do JpaRepository para filtros</p>
+     * **Performance:** Mais eficiente que count() do JpaRepository para filtros
      * 
      * @return Número de alunos ativos no sistema
      */
@@ -327,7 +325,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
     /**
      * Conta alunos ativos por tipo de usuário.
      * 
-     * <p><strong>Uso:</strong> Dashboards, relatórios estatísticos</p>
+     * **Uso:** Dashboards, relatórios estatísticos
      * 
      * @param tipo Tipo de usuário
      * @return Número de alunos ativos do tipo especificado
@@ -338,7 +336,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
     /**
      * Conta total de alunos (ativos e inativos).
      * 
-     * <p><strong>Uso:</strong> Estatísticas gerais do sistema</p>
+     * **Uso:** Estatísticas gerais do sistema
      * 
      * @return Total de alunos no sistema
      */
@@ -348,7 +346,7 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
     /**
      * Conta alunos inativos.
      * 
-     * <p><strong>Uso:</strong> Análise de churn, relatórios de cancelamentos</p>
+     * **Uso:** Análise de churn, relatórios de cancelamentos
      * 
      * @return Número de alunos desativados
      */
@@ -359,8 +357,8 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
      * Estatísticas de alunos ativos agrupados por tipo.
      * Retorna array de objetos onde [0] = TipoUsuario e [1] = Long (count).
      * 
-     * <p><strong>Uso:</strong> Dashboards, gráficos de distribuição por tipo</p>
-     * <p><strong>Formato de retorno:</strong> List&lt;Object[]&gt; onde cada array contém [TipoUsuario, Long]</p>
+     * **Uso:** Dashboards, gráficos de distribuição por tipo  
+     * **Formato de retorno:** List&lt;Object[]&gt; onde cada array contém [TipoUsuario, Long]
      * 
      * @return Lista de arrays com tipo e quantidade de alunos
      */
@@ -373,8 +371,8 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
      * Busca o próximo número de matrícula disponível.
      * Analisa matrículas existentes no formato 'AKD###' e retorna o próximo número sequencial.
      * 
-     * <p><strong>Formato:</strong> AKD001, AKD002, AKD003...</p>
-     * <p><strong>Comportamento:</strong> Se não houver matrículas, retorna 1</p>
+     * **Formato:** AKD001, AKD002, AKD003...  
+     * **Comportamento:** Se não houver matrículas, retorna 1
      * 
      * @return Próximo número sequencial de matrícula
      */
@@ -388,8 +386,8 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
      * Desativa um aluno (soft delete).
      * Marca o aluno como inativo e registra a data de desativação.
      * 
-     * <p><strong>Comportamento:</strong> Apenas alunos ativos podem ser desativados</p>
-     * <p><strong>Auditoria:</strong> Preserva todos os dados históricos</p>
+     * **Comportamento:** Apenas alunos ativos podem ser desativados  
+     * **Auditoria:** Preserva todos os dados históricos
      * 
      * @param id ID do aluno a ser desativado
      * @param dataDesativacao Data da desativação
@@ -405,8 +403,8 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
      * Reativa um aluno previamente desativado.
      * Marca o aluno como ativo, remove a data de desativação e atualiza a data de modificação.
      * 
-     * <p><strong>Comportamento:</strong> Apenas alunos inativos podem ser reativados</p>
-     * <p><strong>Auditoria:</strong> Atualiza automaticamente dataAtualizacao</p>
+     * **Comportamento:** Apenas alunos inativos podem ser reativados  
+     * **Auditoria:** Atualiza automaticamente dataAtualizacao
      * 
      * @param id ID do aluno a ser reativado
      * @return Número de registros afetados (0 se aluno não encontrado ou já ativo)
@@ -422,8 +420,8 @@ public interface AlunoRepository extends JpaRepository<Aluno, Long> {
     /**
      * Atualiza manualmente a data de última modificação do aluno.
      * 
-     * <p><strong>Atenção:</strong> Geralmente não é necessário pois o @UpdateTimestamp faz isso automaticamente</p>
-     * <p><strong>Uso:</strong> Casos específicos onde é necessário controle manual da auditoria</p>
+     * **Atenção:** Geralmente não é necessário pois o @UpdateTimestamp faz isso automaticamente  
+     * **Uso:** Casos específicos onde é necessário controle manual da auditoria
      * 
      * @param id ID do aluno
      * @param dataAtualizacao Nova data de atualização
